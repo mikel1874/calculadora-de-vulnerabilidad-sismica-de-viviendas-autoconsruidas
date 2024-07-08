@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Calculadora de Vulnerabilidad Sísmica</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Calculadora de Vulnerabilidad Sísmica</h1>
+
+    <div class="ecuacion-container">
+      <div class="ecuacion">
+        <h2>Ecuación de Falta de Mantenimiento:</h2>
+        <p>Falta de Mantenimiento = 1 + 0.5 · Salitre + 0.5 · Fisuras + 0.4 · Humedad + 0.3 · Desprendimiento de Pintura + 0.3 · Desgaste en el Techo + 0.2 · Problemas en Instalación Eléctrica + 0.2 · Problemas en Instalación de Agua</p>
+      </div>
+      <div class="ecuacion">
+        <h2>Ecuación de Vulnerabilidad Sísmica:</h2>
+        <p>Vulnerabilidad Sísmica = 1.5 - 0.02 · Resistencia del Concreto + 0.4 · Altura del Edificio + 0.2 · Edad del Edificio + 0.5 · Falta de Mantenimiento</p>
+      </div>
+    </div>
+
+    <div class="calculator">
+      <div class="calculator-section" id="mantenimiento">
+        <div class="evaluation-section">
+          <h2>Evaluación de la Falta de Mantenimiento</h2>
+          <label for="salitre">Salitre (0: No, 1: Sí):</label>
+          <input type="number" id="salitre" min="0" max="1" required>
+
+          <label for="fisuras">Fisuras en Vigas o Columnas (0: No, 1: Sí):</label>
+          <input type="number" id="fisuras" min="0" max="1" required>
+
+          <label for="humedad">Humedad en Paredes (0: No, 1: Sí):</label>
+          <input type="number" id="humedad" min="0" max="1" required>
+
+          <label for="pintura">Desprendimiento de Pintura (0: No, 1: Sí):</label>
+          <input type="number" id="pintura" min="0" max="1" required>
+
+          <label for="techo">Desgaste en el Techo (0: No, 1: Sí):</label>
+          <input type="number" id="techo" min="0" max="1" required>
+
+          <label for="electrica">Problemas en Instalación Eléctrica (0: No, 1: Sí):</label>
+          <input type="number" id="electrica" min="0" max="1" required>
+
+          <label for="agua">Problemas en Instalación de Agua (0: No, 1: Sí):</label>
+          <input type="number" id="agua" min="0" max="1" required>
+
+          <button onclick="calcularFaltaMantenimiento()">Calcular Falta de Mantenimiento</button>
+        </div>
+
+        <div id="resultadoFaltaMantenimiento"></div>
+      </div>
+
+      <div class="calculator-section" id="vulnerabilidad">
+        <div class="evaluation-section">
+          <h2>Evaluación de la Vulnerabilidad Sísmica</h2>
+
+          <div class="input-container">
+            <label for="resistencia">Resistencia del Concreto (kg/cm²):</label>
+            <input type="number" id="resistencia" required>
+            <button onclick="mostrarDefinicion('resistencia')">Definición</button>
+            <div id="definicion-resistencia" class="definicion hidden">
+              A mayor resistencia del concreto, menor será la vulnerabilidad sísmica de la vivienda. Esto significa que si el concreto es muy resistente, la estructura es más capaz de soportar los efectos de un terremoto.
+            </div>
+          </div>
+
+          <div class="input-container">
+            <label for="altura">Altura del Edificio (metros):</label>
+            <input type="number" id="altura" required>
+            <button onclick="mostrarDefinicion('altura')">Definición</button>
+            <div id="definicion-altura" class="definicion hidden">
+              Los edificios más altos tienden a ser más vulnerables a los sismos. La constante 0.4 muestra cómo la altura influye en la vulnerabilidad.
+            </div>
+          </div>
+
+          <div class="input-container">
+            <label for="edad">Edad del Edificio (años):</label>
+            <input type="number" id="edad" required>
+            <button onclick="mostrarDefinicion('edad')">Definición</button>
+            <div id="definicion-edad" class="definicion hidden">
+              Los edificios más antiguos pueden ser más vulnerables debido al desgaste y a las normativas de construcción menos estrictas en el pasado. La constante 0.2 indica la influencia de la edad en la vulnerabilidad.
+            </div>
+          </div>
+
+          <div id="resultadoFaltaMantenimiento"></div>
+
+          <button onclick="calcularVulnerabilidad()">Calcular Vulnerabilidad</button>
+        </div>
+
+        <div id="resultadoVulnerabilidad"></div>
+      </div>
+    </div>
+
+    <div class="chart-container">
+      <button id="btn-resetear" onclick="resetearCalculadora()">Resetear</button> 
+      <h2 class="chart-title">Contribución a la Vulnerabilidad Sísmica</h2>
+      <div class="chart-legend">
+        <div class="chart-legend-item">
+          <div class="chart-legend-color bar-calidad"></div>
+          <span>Resistencia del Concreto</span>
+        </div>
+        <div class="chart-legend-item">
+          <div class="chart-legend-color bar-altura"></div>
+          <span>Altura del Edificio</span>
+        </div>
+        <div class="chart-legend-item">
+          <div class="chart-legend-color bar-edad"></div>
+          <span>Edad del Edificio</span>
+        </div>
+        <div class="chart-legend-item">
+          <div class="chart-legend-color bar-mantenimiento"></div>
+          <span>Falta de Mantenimiento</span>
+        </div>
+        <div class="chart-legend-item">
+          <div class="chart-legend-color bar-base"></div>
+          <span>Base</span>
+        </div>
+      </div>
+      <div id="chartContainer" style="width: 100%; height: 400px;"></div>
+    </div>
+
+    <h2 class="interpretacion-title">Interpretación</h2> 
+    <div id="interpretacion-recomendaciones"></div> 
+    <div id="interpretacion-imagen"></div>
+
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <script src="script.js"></script>
+  </div>
+</body>
+</html>

@@ -1,0 +1,297 @@
+body {
+  font-family: 'Roboto', sans-serif;
+  background-image: url("https://i.pinimg.com/originals/d1/ac/92/d1ac92c711b3da96055c2b71cc4cb4c6.jpg");
+  background-size: cover; /* Ajusta la imagen a la pantalla */
+  background-repeat: no-repeat; /* Evita que se repita la imagen */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+}
+
+.container {
+  background-color: rgba(255, 255, 255, 0.8); /* Fondo blanco translúcido */
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  width: 800px; /* Ajusta el ancho del contenedor */
+  max-width: 90%;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.ecuacion-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.ecuacion {
+  background-color: #f8f8f8;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  flex: 1;
+  margin: 0 10px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+input[type="number"] {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+#resultado, #resultadoMantenimiento {
+  margin-top: 20px;
+  font-weight: bold;
+  text-align: center;
+}
+
+#faltaMantenimiento {
+  margin-top: 10px;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* Gráfico de barras apilables */
+#chartContainer {
+  width: 100%;
+  height: 400px;
+  margin-top: 20px;
+}
+
+/* Estilos para el gráfico */
+.chart-container {
+  margin-top: 20px;
+}
+
+.chart-title {
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.chart-legend {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 10px;
+}
+
+.chart-legend-item {
+  display: flex;
+  align-items: center;
+}
+
+.chart-legend-color {
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+}
+
+.chart-bar {
+  width: 100%;
+  height: 100%;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  position: relative;
+}
+
+.chart-bar-value {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: bold;
+  color: #333;
+}
+
+.chart-bar-label {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 12px;
+}
+
+/* Colores para las barras */
+.bar-base {
+  background-color: #fdd;
+}
+
+.bar-calidad {
+  background-color: #e0ffff;
+}
+
+.bar-altura {
+  background-color: #fff0e0;
+}
+
+.bar-edad {
+  background-color: #e0ffff;
+}
+
+.bar-mantenimiento {
+  background-color: #ffe0e0;
+}
+
+/* Estilos para las calculadoras */
+.calculator {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.calculator-section {
+  flex: 1;
+  margin: 0 10px;
+}
+
+/* Invierte el orden de las ecuaciones */
+.ecuacion-container > div:first-child {
+  order: 1; /* Ecuación de Falta de Mantenimiento a la izquierda */
+}
+
+.ecuacion-container > div:last-child {
+  order: 2; /* Ecuación de Vulnerabilidad Sísmica a la derecha */
+}
+
+/* Estilos para las secciones de evaluación */
+.evaluation-section {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.evaluation-section label {
+  margin-bottom: 5px;
+}
+
+.evaluation-section input[type="number"] {
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.evaluation-section button {
+  padding: 8px 15px; /* Ajusta el tamaño del botón */
+  background-color: #4CAF50; 
+  color: white; 
+  border: none; 
+  border-radius: 4px; 
+  cursor: pointer; 
+  transition: background-color 0.3s;
+  margin-left: 10px; /* Agrega margen a la izquierda */
+}
+
+.evaluation-section button:hover {
+  background-color: #45a049;
+}
+
+/* Estilos para los recuadros de definición */
+.input-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.definicion {
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 5px;
+  width: 300px; /* Ajusta el ancho del recuadro */
+  position: absolute; /* Posición relativa */
+  z-index: 1; /* Superpone sobre otros elementos */
+}
+
+.hidden {
+  display: none; /* Ocultar el recuadro por defecto */
+}
+
+#resultadoFaltaMantenimiento {
+  margin-top: 5px;
+  font-weight: normal; /* Puedes ajustar el peso de la fuente */
+  text-align: left; /* Alinea el texto a la izquierda */
+}
+
+#resultadoVulnerabilidad {
+  background-color: #333; /* Fondo oscuro */
+  color: white;          /* Texto blanco */
+  padding: 15px;         /* Espacio interior */
+  border-radius: 5px;    /* Bordes redondeados */
+  margin-top: 20px;     /* Margen superior */
+  text-align: center;   /* Alineación del texto al centro */
+  font-weight: bold;     /* Fuente en negrita */
+}
+
+/* Estilos para la imagen de interpretación */
+#interpretacion-imagen {
+  text-align: center;
+  margin-top: 20px;
+}
+
+#interpretacion-imagen img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Estilos para el título "Interpretación" y las recomendaciones */
+.interpretacion-title {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 1.5em;
+}
+
+#interpretacion-recomendaciones {
+  text-align: center;
+  margin-top: 10px;
+}
+
+/* Estilos para el botón "Resetear" */
+#btn-resetear {
+  padding: 8px 15px;
+  background-color: #f44336; /* Color rojo para el botón */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-bottom: 10px; /* Agrega margen inferior */
+}
+
+#btn-resetear:hover {
+  background-color: #d32f2f; /* Color rojo más oscuro al hacer hover */
+}
