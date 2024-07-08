@@ -1,0 +1,1 @@
+# calculadora-de-vulnerabilidad-sismica-de-viviendas-autoconsruidas
